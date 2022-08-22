@@ -4,7 +4,7 @@ phases:
 
   install:
     commands:
-      - apt update
+      - apt update -q 
       - apt install -y  wget curl jq unzip 
       - >
         curl -sLO https://storage.googleapis.com/kubernetes-release/release/v1.22.4/bin/linux/amd64/kubectl
@@ -24,6 +24,7 @@ phases:
   build:
     commands:
       - docker build --tag $REPOSITORY_URI:$TAG .
+      - docker build --tag $REPOSITORY_URI:$TAG $REPOSITORY_URI:"latest"
 
   post_build:
     commands:
