@@ -4,7 +4,7 @@ phases:
 
   install:
     commands:
-      - apt update -q 
+      - apt -q update
       - apt install -y  wget curl jq unzip 
       - >
         curl -sLO https://storage.googleapis.com/kubernetes-release/release/v1.22.4/bin/linux/amd64/kubectl
@@ -23,13 +23,15 @@ phases:
         
   build:
     commands:
+      - echo $REPOSITORY_URI:$TAG  
+      - echo $REPOSITORY_URI:latest    
       - docker build --tag $REPOSITORY_URI:$TAG .
-      - echo $REPOSITORY_URI:$TAG  $REPOSITORY_URI:latest
-      - docker tag $REPOSITORY_URI:$TAG   $REPOSITORY_URI:latest
+      - docker tag  $REPOSITORY_URI:latest $REPOSITORY_URI:$TAG  
 
   post_build:
     commands:
       - docker push $REPOSITORY_URI:$TAG
+      - docker push $REPOSITORY_URI:latest 
       - | 
         CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
         export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
