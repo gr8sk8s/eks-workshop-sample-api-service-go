@@ -4,9 +4,11 @@ phases:
 
   install:
     commands:
+      - which docker && docker --version
       - which git && git --version
       - which aws && aws --version
-      - which docker && docker --version 
+      - which kubectl && kubectl version 
+
       
       - printenv
       - apt -q update
