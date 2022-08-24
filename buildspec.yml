@@ -7,7 +7,7 @@ phases:
       - which docker && docker --version
       - which git && git --version
       - which aws && aws --version
-      - which kubectl && kubectl version 
+      - which kubectl && kubectl version --client --short
 
       
       - printenv
