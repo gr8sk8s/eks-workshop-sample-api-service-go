@@ -15,7 +15,7 @@ func main() {
 
 		f := fib()
 
-		res := &response{Message: "This container image/app/microservice was built and tested successfully by DEV team"}
+		res := &response{Message: "This image/app/microservice was built and tested successfully by DEV team"}
 
 		for _, e := range os.Environ() {
 			pair := strings.Split(e, "=")

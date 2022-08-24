@@ -4,6 +4,10 @@ phases:
 
   install:
     commands:
+      - which git && git --version
+      - which aws && aws --version
+      - which docker && docker --version 
+      
       - printenv
       - apt -q update
       - apt install -y  wget curl jq unzip 
