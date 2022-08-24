@@ -8,14 +8,6 @@ phases:
       - which git && git --version
       - which aws && aws --version
       - which kubectl && kubectl version --client --short
-      - printenv
-      - apt -q update
-      - apt install -y  wget curl jq unzip 
-      - >
-        curl -sLO "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
-        && unzip -q awscli-exe-linux-x86_64.zip && ./aws/install --update
-        && aws --version
-        && rm -rf ./aws && rm -f ./awscliv2.zip
 
   pre_build:
       commands:
