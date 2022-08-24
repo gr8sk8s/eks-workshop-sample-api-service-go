@@ -8,8 +8,6 @@ phases:
       - which git && git --version
       - which aws && aws --version
       - which kubectl && kubectl version --client --short
-
-      
       - printenv
       - apt -q update
       - apt install -y  wget curl jq unzip 
