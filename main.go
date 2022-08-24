@@ -15,7 +15,7 @@ func main() {
 
 		f := fib()
 
-		res := &response{Message: "This container image/app/microservice was built and tested successfully by DEV team. Pushed to ECR for integration tests and QA"}
+		res := &response{Message: "This container image/app/microservice was built and tested successfully by DEV team"}
 
 		for _, e := range os.Environ() {
 			pair := strings.Split(e, "=")
@@ -23,7 +23,7 @@ func main() {
 		}
 		sort.Strings(res.EnvVars)
 
-		for i := 1; i <= 20; i++ {
+		for i := 1; i <= 15; i++ {
 			res.Fib = append(res.Fib, f())
 		}
 
